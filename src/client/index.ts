@@ -35,7 +35,25 @@ class SocialClient extends Client {
 	 * @param eventsDir The directory to load the commands in
 	 * @example await loadEvents("events")
 	 */
-	async loadEvents(eventsDir: string = 'events'): Promise<void> {}
+	async loadEvents(eventsDir: string = 'events'): Promise<void> {
+		const paths = await loadDirSync(eventsDir);
+
+		for (const path of paths) {
+			const eventName = normalize(path).split(sep).pop()!.split('.')[0];
+			const event: Event = (await import(path)).default || (await import(path));
+			if (!event) {
+				this.logger.warn(
+					`The event ${eventName} does not export a event function`
+				);
+				return;
+			}
+			try {
+				this.on(eventName, event.bind(null, this));
+			} catch (err) {
+				this.logger.error(err);
+			}
+		}
+	}
 
 	/**
 	 * @param commandsDir The directory to load the commands in
@@ -82,7 +100,6 @@ class SocialClient extends Client {
 				return;
 			}
 			this._commands.set(commandFile.name, commandFile);
-			console.log(commandFile);
 		}
 	}
 
