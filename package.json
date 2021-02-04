@@ -1,24 +1,28 @@
 {
-  "name": "expert-socializing",
-  "version": "1.0.0",
-  "description": "A discord bot",
-  "main": "src/bot.ts",
-  "repository": "https://github.com/Thomypro098/expert-socializing.git",
-  "author": "RadPlayz & ThommyPro",
-  "license": "MIT",
-  "private": true,
-  "scripts": {
-    "start": "cls && ts-node src/bot.ts",
-    "dev": "cls && nodemon --exec \"cls && ts-node \" src/bot.ts"
-  },
-  "dependencies": {
-    "consola": "^2.15.2",
-    "discord.js": "^12.5.1",
-    "dotenv": "^8.2.0",
-    "mongoose": "^5.11.15"
-  },
-  "devDependencies": {
-    "@types/consola": "^2.2.5",
-    "@types/dotenv": "^8.2.0"
-  }
+	"name": "expert-socializing",
+	"version": "1.0.0",
+	"description": "A discord bot",
+	"main": "src/bot.ts",
+	"repository": "https://github.com/Thomypro098/expert-socializing.git",
+	"author": "RadPlayz & ThommyPro",
+	"license": "MIT",
+	"private": true,
+	"scripts": {
+		"start": "cls && ts-node src/bot.ts",
+		"dev": "cls && nodemon --exec \"cls && ts-node \" src/bot.ts",
+		"lint": "cls && prettier -w .",
+		"build": "cls && tsc"
+	},
+	"dependencies": {
+		"consola": "^2.15.2",
+		"discord.js": "^12.5.1",
+		"dotenv": "^8.2.0",
+		"mongoose": "^5.11.15",
+		"ws": "^7.4.3"
+	},
+	"devDependencies": {
+		"@types/consola": "^2.2.5",
+		"@types/dotenv": "^8.2.0",
+		"@types/ws": "^7.4.0"
+	}
 }
