@@ -12,6 +12,9 @@ import {
 } from 'discord.js';
 
 import consola, { Consola } from 'consola';
+import { loadDirSync } from '../utils/functions';
+import { sep, normalize } from 'path';
+import { Command, Event } from '../utils/types';
 class SocialClient extends Client {
 	/* <---------------------------------- Methods ----------------------------------> */
 
@@ -38,7 +41,50 @@ class SocialClient extends Client {
 	 * @param commandsDir The directory to load the commands in
 	 * @example await loadCommands("cmds")
 	 */
-	async loadCommands(commandsDir: string = 'commands'): Promise<void> {}
+	async loadCommands(commandsDir: string = 'commands'): Promise<void> {
+		const paths = await loadDirSync(commandsDir);
+		for (const path of paths) {
+			const commandFileName = normalize(path).split(sep).pop()!.split('.')[0];
+			const commandFile: Command =
+				(await import(path)).default || (await import(path));
+			if (!commandFile) {
+				this.logger.warn(
+					`The command ${commandFileName} does not export a command object`
+				);
+				return;
+			}
+			if (!commandFile.name) {
+				commandFile.name = commandFileName;
+			}
+			let names: string[] = [commandFile.name];
+			const { aliases, commands, names: commandFileNames } = commandFile;
+			if (aliases) names.concat(aliases);
+			if (commands) names.concat(commands);
+			if (commandFileNames) names.concat(commandFileNames);
+			commandFile._names = names;
+			let callbackCounter: number = 0;
+			if (commandFile.execute) {
+				commandFile._run = commandFile.execute;
+				callbackCounter++;
+			}
+			if (commandFile.run) {
+				commandFile._run = commandFile.run;
+				callbackCounter++;
+			}
+			if (commandFile.callback) {
+				commandFile._run = commandFile.callback;
+				callbackCounter++;
+			}
+			if (callbackCounter > 1) {
+				this.logger.warn(
+					`The command "${commandFileName}" have more than 1 run function`
+				);
+				return;
+			}
+			this._commands.set(commandFile.name, commandFile);
+			console.log(commandFile);
+		}
+	}
 
 	/**
 	 *
@@ -113,19 +159,19 @@ class SocialClient extends Client {
 	/* <---------------------------------- Properties ----------------------------------> */
 	/* <----------------- Private Properties -----------------> */
 	/* Contains all the commands in the client */
-	private _commands: Collection<string, object> = new Collection();
+	private _commands: Collection<string, Command> = new Collection();
 	/* Contains all the events in the client */
-	private _events: Collection<string, Function> = new Collection();
+	private _events: Collection<string, Event> = new Collection();
 
 	/* <----------------- Public Properties -----------------> */
 
 	public logger: Consola = consola;
 
-	public get commands(): Collection<string, object> {
+	public get commands(): Collection<string, Command> {
 		return this._commands;
 	}
 
-	public get events(): Collection<string, Function> {
+	public get events(): Collection<string, Event> {
 		return this._events;
 	}
 
