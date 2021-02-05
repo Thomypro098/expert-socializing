@@ -24,7 +24,7 @@ class SocialClient extends Client {
 	): Promise<ColorResolvable> {
 		const me = guild.me!;
 		const color: ColorResolvable = isError
-			? '#FF000000'
+			? '#FF0000'
 			: me.displayHexColor !== '#000000'
 			? me.displayHexColor
 			: '#0000FF';
