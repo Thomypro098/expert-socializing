@@ -137,10 +137,10 @@ class SocialClient extends Client {
 
 		if (!data.footer) {
 			const footer: MessageEmbedFooter = {
-				text: message.member!.displayName,
-				iconURL: message.author.displayAvatarURL({ dynamic: true })
+				text: 'Created At:',
+				iconURL: message.author?.displayAvatarURL({ dynamic: true })
 			};
-			embed.setFooter(footer);
+			embed.setFooter(footer)
 		}
 
 		if (!data.color) {
@@ -155,10 +155,9 @@ class SocialClient extends Client {
 
 		if (!data.author) {
 			const author: MessageEmbedAuthor = {
-				name: message.guild!.name,
+				name: message.member?.user?.tag,
 				iconURL:
-					message.guild!.iconURL({ dynamic: true, format: 'png' }) ||
-					this.user?.displayAvatarURL({ dynamic: true, format: 'png' })
+					message.author?.displayAvatarURL({ dynamic: true, format: 'png' })
 			};
 			embed.setAuthor(author);
 		}
