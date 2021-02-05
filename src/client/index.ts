@@ -182,7 +182,10 @@ class SocialClient extends Client {
 
 	/* <----------------- Public Properties -----------------> */
 
+	/* The logger to design the console */
 	public logger: Consola = consola;
+	/* The bot developers, Used for devOnly commands */
+	public developers: string[];
 
 	public get commands(): Collection<string, Command> {
 		return this._commands;
@@ -196,6 +199,8 @@ class SocialClient extends Client {
 
 	constructor(Options?: ClientOptions) {
 		super(Options);
+
+		this.developers = ['804406341271289907', '699890054516179004'];
 	}
 }
 

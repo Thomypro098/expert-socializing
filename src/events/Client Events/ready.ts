@@ -8,4 +8,4 @@ const readyEvent: Event = (client) => {
 	);
 };
 
-export default readyEvent
+export default readyEvent;

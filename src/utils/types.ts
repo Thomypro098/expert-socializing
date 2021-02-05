@@ -24,13 +24,11 @@ export type Command = {
 	names?: string[];
 
 	reqPerms?: CommandPermissions;
-	perms?: CommandPermissions;
-	requiredPerms?: CommandPermissions;
-	requiredPermissions?: CommandPermissions;
-	reqPermissions?: CommandPermissions;
+
+	guildOwnerOnly?: CommandPermissions;
+	devOnly?: CommandPermissions;
 
 	_names?: string[];
-	_perms?: CommandPermissions;
 	_run?: CommandExecuteFn;
 };
 
