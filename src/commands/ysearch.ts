@@ -13,7 +13,7 @@ const YSearchCommand: Command = {
                 iconURL: message.author.displayAvatarURL({ dynamic: true }),
             },
             footer: {
-                text: 'Credits to "yt-search" package owner'
+                text: ''
             }
         }, message)
 
@@ -21,7 +21,7 @@ const YSearchCommand: Command = {
 
         if (!args) return message.channel.send('Please inlude what you want to search for.')
         const r = await yts(`${args}`)
-        const videos = r.videos.slice(0, 5)
+        const videos = r.videos.slice(0, 6)
         videos.forEach(async function (v) {
             embed.addField(
                 `Video #${i++}`,
