@@ -21,6 +21,7 @@
 		"glob": "^7.1.6",
 		"instagram-web-api": "^2.2.2",
 		"mongoose": "^5.11.15",
+		"pretty-ms": "^7.0.1",
 		"twitter": "^1.7.1",
 		"ws": "^7.4.3",
 		"yt-search": "^2.6.1"
