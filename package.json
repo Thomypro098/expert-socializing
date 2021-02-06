@@ -11,7 +11,8 @@
 		"start": "cls && ts-node src/bot.ts",
 		"dev": "cls && nodemon --exec \"cls && ts-node \" src/bot.ts",
 		"lint": "cls && prettier -w .",
-		"build": "cls && tsc"
+		"build": "cls && tsc",
+		"push": "cls && git add * && git commit -m \"Bot Updates\" && git push"
 	},
 	"dependencies": {
 		"chalk": "^4.1.0",
