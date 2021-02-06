@@ -13,7 +13,7 @@ const YSearchCommand: Command = {
                 iconURL: message.author.displayAvatarURL({ dynamic: true }),
             },
             footer: {
-                text: ' '
+                text: 'Credits to "yt-search" package owner'
             }
         }, message)
 
