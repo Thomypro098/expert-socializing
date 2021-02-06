@@ -7,14 +7,7 @@ const YSearchCommand: Command = {
 
 	callback: async (message, args, bot) => {
         const embed = await bot.createEmbed({
-            title: 'Top Video Search Results',
-            author: {
-                name: message.author.tag,
-                iconURL: message.author.displayAvatarURL({ dynamic: true }),
-            },
-            footer: {
-                text: ''
-            }
+            title: 'Top Video Search Results'
         }, message)
 
         let i = 1;

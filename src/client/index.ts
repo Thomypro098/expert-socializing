@@ -27,7 +27,7 @@ class SocialClient extends Client {
 			? '#FF0000'
 			: me.displayHexColor !== '#000000'
 			? me.displayHexColor
-			: '#0000FF';
+			: '#00FFFF';
 		return color;
 	}
 
@@ -136,11 +136,10 @@ class SocialClient extends Client {
 		const embed: MessageEmbed = new MessageEmbed(data);
 
 		if (!data.footer) {
-			const footer: MessageEmbedFooter = {
-				text: 'Created At:',
-				iconURL: message.author?.displayAvatarURL({ dynamic: true })
-			};
-			embed.setFooter(footer)
+			embed.setFooter(
+				`${message.member!.displayName} | ${this.user!.username}`,
+				message.author.displayAvatarURL({ dynamic: true })
+			);
 		}
 
 		if (!data.color) {
@@ -154,12 +153,11 @@ class SocialClient extends Client {
 		}
 
 		if (!data.author) {
-			const author: MessageEmbedAuthor = {
-				name: message.member?.user?.tag,
-				iconURL:
-					message.author?.displayAvatarURL({ dynamic: true, format: 'png' })
-			};
-			embed.setAuthor(author);
+			embed.setAuthor(
+				message.guild!.name,
+				message.guild!.iconURL({ dynamic: true, format: 'png' }) ||
+					this.user!.displayAvatarURL({ dynamic: true, format: 'png' })
+			);
 		}
 
 		return embed;
