@@ -21,7 +21,7 @@ const PingCommand: Command = {
 					{
 						name: 'Bot Latency:',
 						value: `**\`\`${
-							msg.createdTimestamp - message.createdTimestamp 
+							msg.createdTimestamp - message.createdTimestamp
 						}\`\`**ms`
 					},
 					{
@@ -32,7 +32,9 @@ const PingCommand: Command = {
 			},
 			message
 		);
-		await msg.edit(embed)
+		setTimeout(async() => {
+			await msg.edit(embed);
+		}, 750);
 	}
 };
 

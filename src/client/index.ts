@@ -27,7 +27,7 @@ class SocialClient extends Client {
 			? '#FF0000'
 			: me.displayHexColor !== '#000000'
 			? me.displayHexColor
-			: '#0000FF';
+			: '#00FFFF';
 		return color;
 	}
 
