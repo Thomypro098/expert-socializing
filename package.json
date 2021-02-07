@@ -24,6 +24,7 @@
 		"mongoose": "^5.11.15",
 		"pretty-ms": "^7.0.1",
 		"twitter": "^1.7.1",
+		"wokcommands": "^1.2.1",
 		"ws": "^7.4.3",
 		"yt-search": "^2.6.1",
 		"yt-trending-scraper": "^1.1.0"

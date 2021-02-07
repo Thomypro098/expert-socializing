@@ -4,6 +4,7 @@ import { MessageEmbed } from 'discord.js';
 import YTS from 'yt-trending-scraper';
 const YTrendingCommand: Command = {
 	name: 'trending',
+	description: 'Show the trending youtube videos',
 
 	callback: async (message, args, bot) => {
 		const eEmbed = await bot.createEmbed(

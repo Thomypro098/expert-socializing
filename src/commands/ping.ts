@@ -3,6 +3,7 @@ import ms from 'pretty-ms';
 
 const PingCommand: Command = {
 	name: 'ping',
+	description: 'Shows the ping',
 
 	callback: async (message, args, bot) => {
 		const embed = await bot.createEmbed({

@@ -4,6 +4,7 @@ import yts = require('yt-search')
 
 const YSearchCommand: Command = {
 	name: 'search',
+    description: 'Search over youtube videos',
 
 	callback: async (message, args, bot) => {
         const embed = await bot.createEmbed({
